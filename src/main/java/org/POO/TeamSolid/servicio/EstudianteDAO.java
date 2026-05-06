@@ -29,14 +29,13 @@ public class EstudianteDAO implements IEstudianteDAO {
         List<Estudiante> list = new ArrayList<>();
         try (Connection conn = con) {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM \"Estudiante\"");            while (rs.next()) {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM \"Estudiante\"");
             while (rs.next()) {
                 Estudiante estudiante = new Estudiante();
                 estudiante.setId(rs.getInt("id"));
                 estudiante.setNombre(rs.getString("nombre"));
                 estudiante.setCif(rs.getString("cif"));
                 list.add(estudiante);
-            }
             }
         } catch (SQLException e){
             e.printStackTrace();
