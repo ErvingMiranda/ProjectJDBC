@@ -16,7 +16,16 @@ public class EstudianteDAO implements IEstudianteDAO {
 
     @Override
     public void insert(Estudiante e) {
-
+        String sql = "INSERT INTO Estudiante(id, nombre, cif) VALUES(?,?,?)";
+        try(PreparedStatement ps=con.prepareStatement(sql))
+        {
+            ps.setInt(1, e.getId());
+            ps.setString(2, e.getNombre());
+            ps.setString(3, e.getCif());
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
